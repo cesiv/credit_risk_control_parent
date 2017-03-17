@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanzhou.www.dao.oa.LeaveDao">
+  <resultMap id="BaseResultMap" type="com.hanzhou.www.model.oa.Leave">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="apply_time" jdbcType="TIMESTAMP" property="applyTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="leave_type" jdbcType="VARCHAR" property="leaveType" />
+    <result column="process_instance_id" jdbcType="VARCHAR" property="processInstanceId" />
+    <result column="reality_end_time" jdbcType="TIMESTAMP" property="realityEndTime" />
+    <result column="reality_start_time" jdbcType="TIMESTAMP" property="realityStartTime" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, apply_time, end_time, leave_type, process_instance_id, reality_end_time, reality_start_time, 
+    reason, start_time, user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from oa_leave
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from oa_leave
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hanzhou.www.model.oa.Leave">
+    insert into oa_leave (id, apply_time, end_time, 
+      leave_type, process_instance_id, reality_end_time, 
+      reality_start_time, reason, start_time, 
+      user_id)
+    values (#{id,jdbcType=BIGINT}, #{applyTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{leaveType,jdbcType=VARCHAR}, #{processInstanceId,jdbcType=VARCHAR}, #{realityEndTime,jdbcType=TIMESTAMP}, 
+      #{realityStartTime,jdbcType=TIMESTAMP}, #{reason,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{userId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hanzhou.www.model.oa.Leave">
+    insert into oa_leave
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="applyTime != null">
+        apply_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="leaveType != null">
+        leave_type,
+      </if>
+      <if test="processInstanceId != null">
+        process_instance_id,
+      </if>
+      <if test="realityEndTime != null">
+        reality_end_time,
+      </if>
+      <if test="realityStartTime != null">
+        reality_start_time,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="applyTime != null">
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveType != null">
+        #{leaveType,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null">
+        #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="realityEndTime != null">
+        #{realityEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realityStartTime != null">
+        #{realityStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanzhou.www.model.oa.Leave">
+    update oa_leave
+    <set>
+      <if test="applyTime != null">
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveType != null">
+        leave_type = #{leaveType,jdbcType=VARCHAR},
+      </if>
+      <if test="processInstanceId != null">
+        process_instance_id = #{processInstanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="realityEndTime != null">
+        reality_end_time = #{realityEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realityStartTime != null">
+        reality_start_time = #{realityStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hanzhou.www.model.oa.Leave">
+    update oa_leave
+    set apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      leave_type = #{leaveType,jdbcType=VARCHAR},
+      process_instance_id = #{processInstanceId,jdbcType=VARCHAR},
+      reality_end_time = #{realityEndTime,jdbcType=TIMESTAMP},
+      reality_start_time = #{realityStartTime,jdbcType=TIMESTAMP},
+      reason = #{reason,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
